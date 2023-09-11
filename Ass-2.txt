@@ -1,0 +1,182 @@
+# SCARA Robot
+import numpy as np
+
+
+d1 = 1   #lenth of first link  R
+d2 = 1   #lenth of second link  R
+d3 = 1   #lenth of third link  P
+a= 0.5   # lenth of zero link
+
+theta1 = float(input("enter the angle of the first joint: "))
+theta2 = float(input("enter the angle of the second joint: "))
+x = float(input("enter the movement of the third link: "))
+
+
+
+theta1 = theta1*np.pi/180
+theta2 = theta2*np.pi/180
+
+H1 = np.array([[np.cos(theta1),-np.sin(theta1),0,0],
+               [np.sin(theta1),np.cos(theta1),0,0],
+               [0,0,1,a],
+               [0,0,0,1]])
+
+H2 = np.array([[np.cos(theta2),-np.sin(theta2),0,d1],
+               [np.sin(theta2),np.cos(theta2),0,0],
+               [0,0,1,0],
+               [0,0,0,1]])
+
+H3 = np.array([[1,0,0,d2],
+               [0,1,0,0],
+               [0,0,1,0],
+               [0,0,0,1]])
+
+P3 = ([[0],[0],[-d3-x],[1]])
+
+# H3 = np.array([[1,0,0,d2],
+#                [0,1,0,0],
+#                [0,0,1,-d3-x],
+#                [0,0,0,1]])
+
+P0 = np.dot(np.dot(np.dot(H1,H2),H3),P3)
+print(P0[0])
+print(P0[1])
+print(P0[2])
+
+print(P0)
+
+
+
+
+
+
+# standford arm
+
+import numpy as np
+
+
+d1 = 1   #lenth of first link  R
+d2 = 1   #lenth of second link  R
+d3 = 1   #lenth of third link  P
+
+theta1 = float(input("enter the angle of the first joint: "))
+theta2 = float(input("enter the angle of the second joint: "))
+x = float(input("enter the movement of the third link: "))
+
+
+
+theta1 = theta1*np.pi/180
+theta2 = theta2*np.pi/180
+
+H1 = np.array([[np.cos(theta1),-np.sin(theta1),0,0],
+               [np.sin(theta1),np.cos(theta1),0,0],
+               [0,0,1,0],
+               [0,0,0,1]])
+
+H2 = np.array([[np.cos(theta2),-np.sin(theta2),0,0],
+               [0,0,-1,0],
+               [np.cos(theta2),np.sin(theta1),0,d1],
+               [0,0,0,1]])
+
+H3 = np.array([[1,0,0,d2],
+               [0,1,0,0],
+               [0,0,1,0],
+               [0,0,0,1]])
+
+P3 = ([[d3+x],[0],[0],[1]])
+
+# H3 = np.array([[1,0,0,d2],
+#                [0,1,0,0],
+#                [0,0,1,-d3-x],
+#                [0,0,0,1]])
+
+P0 = np.dot(np.dot(np.dot(H1,H2),H3),P3)
+print(P0[0])
+print(P0[1])
+print(P0[2])
+
+print(P0)
+
+
+
+
+
+
+
+import numpy as np
+
+# Define symbolic variables
+theta1= 30*np.pi/180
+theta2 = 60*np.pi/180
+
+t1 = np.array([[1,0,0,0],
+               [0,1,0,0],
+               [0,0,1,10],
+               [0,0,0,1]])
+t2 = np.array([[1,0,0,0],
+                [0,np.cos(theta1),-np.sin(theta1),0],
+                [0,np.sin(theta1),np.cos(theta1),0],
+                [0,0,0,1]])
+t3 = np.array([[np.cos(theta2),-np.sin(theta2),0,0],
+               [np.sin(theta2),np.cos(theta2),0,0],
+                [0,0,1,30],
+                [0,0,0,1]])
+
+t = np.dot(np.dot(t1,t2),t3)
+
+
+
+
+print(f'The transformation matrix is: \n {t}')
+
+
+
+
+
+
+
+import numpy as np
+
+
+d1 = 1   #lenth of first link  R
+d2 = 1   #lenth of second link  R
+d3 = 1   #lenth of third link  P
+a= 0.5   # lenth of zero link
+
+theta1 = float(input("enter the angle of the first joint: "))
+theta2 = float(input("enter the angle of the second joint: "))
+x = float(input("enter the movement of the third link: "))
+
+
+
+theta1 = theta1*np.pi/180
+theta2 = theta2*np.pi/180
+
+H1 = np.array([[np.cos(theta1),-np.sin(theta1),0,0],
+               [np.sin(theta1),np.cos(theta1),0,0],
+               [0,0,1,a],
+               [0,0,0,1]])
+
+H2 = np.array([[np.cos(theta2),-np.sin(theta2),0,d1],
+               [np.sin(theta2),np.cos(theta2),0,0],
+               [0,0,1,0],
+               [0,0,0,1]])
+
+H3 = np.array([[1,0,0,d2],
+               [0,1,0,0],
+               [0,0,1,0],
+               [0,0,0,1]])
+
+P3 = ([[0],[0],[-d3-x],[1]])
+
+# H3 = np.array([[1,0,0,d2],
+#                [0,1,0,0],
+#                [0,0,1,-d3-x],
+#                [0,0,0,1]])
+
+P0 = np.dot(np.dot(np.dot(H1,H2),H3),P3)
+print(P0[0])
+print(P0[1])
+print(P0[2])
+
+print(P0) 
